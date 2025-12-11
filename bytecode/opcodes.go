@@ -1,0 +1,12 @@
+package bytecode
+
+const (
+	OP_HALT byte = iota
+	OP_PUSH_CONST
+	OP_PUSH_LOCAL
+	OP_STORE_LOCAL
+	OP_POP
+	OP_CALL_BUILTIN
+	OP_START_WORKER
+)
+
