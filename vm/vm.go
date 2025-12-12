@@ -261,7 +261,7 @@ func (v VM) Run(block *Block) {
 				a := stack[len(stack)-1].(big.Float)
 				stack = stack[:len(stack)-1]
 				stack = append(stack, a.Cmp(&b) == 0)
-				
+
 			case builtins.BO_BIG_NOT_EQUAL:
 				b := stack[len(stack)-1].(big.Float)
 				stack = stack[:len(stack)-1]
@@ -390,6 +390,25 @@ func (v VM) Run(block *Block) {
 			} else {
 				go v.Run(worker)
 			}
+
+		case bytecode.OP_JUMP:
+			ip = int(int32(uint32(instructions[ip]) | uint32(instructions[ip+1])<<8 | uint32(instructions[ip+2])<<16 | uint32(instructions[ip+3])<<24))
+
+		case bytecode.OP_JUMP_IF_FALSE:
+			if !stack[len(stack)-1].(bool) {
+				ip = int(int32(uint32(instructions[ip]) | uint32(instructions[ip+1])<<8 | uint32(instructions[ip+2])<<16 | uint32(instructions[ip+3])<<24))
+			} else {
+				ip += 4
+			}
+			stack = stack[:len(stack)-1]
+
+		case bytecode.OP_JUMP_IF_TRUE:
+			if stack[len(stack)-1].(bool) {
+				ip = int(int32(uint32(instructions[ip]) | uint32(instructions[ip+1])<<8 | uint32(instructions[ip+2])<<16 | uint32(instructions[ip+3])<<24))
+			} else {
+				ip += 4
+			}
+			stack = stack[:len(stack)-1]
 
 		default:
 			panic("unknown opcode")
