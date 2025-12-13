@@ -25,19 +25,19 @@ func main() {
 		},
 	}
 
-	var sleep = vm.Block{
-		Instructions: []byte{
-			OP_PUSH_CONST, 0,
-			OP_CALL_BUILTIN, BF_SLEEP, 1,
-			OP_PUSH_CONST, 1,
-			OP_CALL_BUILTIN, BF_PRINT, 1,
-			OP_HALT,
-		},
-		Constants: []any{
-			1000, // Sleep for 1000 milliseconds
-			"Slept for 1 second!",
-		},
-	}
+	// var sleep = vm.Block{
+	// 	Instructions: []byte{
+	// 		OP_PUSH_CONST, 0,
+	// 		OP_CALL_BUILTIN, BF_SLEEP, 1,
+	// 		OP_PUSH_CONST, 1,
+	// 		OP_CALL_BUILTIN, BF_PRINT, 1,
+	// 		OP_HALT,
+	// 	},
+	// 	Constants: []any{
+	// 		1000, // Sleep for 1000 milliseconds
+	// 		"Slept for 1 second!",
+	// 	},
+	// }
 
 	var operationAndWorker = vm.Block{
 		Instructions: []byte{
@@ -146,11 +146,39 @@ func main() {
 		},
 	}
 
+	var printPower = vm.Block{
+		NumLocals: 0,
+		Constants: []any{
+
+			// Function block to compute power
+			&vm.Block{
+				NumLocals: 2, // base, exponent
+				Instructions: []byte{
+					OP_PUSH_LOCAL, 0,
+					OP_PUSH_LOCAL, 1,
+					OP_CALL_OPERATION, BO_POWER,
+					OP_RETURN,
+				},
+			},
+			2.0, // base
+			3.0, // exponent
+		},
+
+		// Main instructions
+		Instructions: []byte{
+			OP_PUSH_CONST, 1, // push base
+			OP_PUSH_CONST, 2, // push exponent
+			OP_CALL_FUNCTION, 0, 2, // call function block with 2 args
+			OP_CALL_BUILTIN, BF_PRINT, 1, // print(result)
+			OP_HALT,
+		},
+	}
+
 	fmt.Println("==== Hello World example ====")
 	v.Run(&helloWorld)
 
-	fmt.Println("==== Sleep example ====")
-	v.Run(&sleep)
+	// fmt.Println("==== Sleep example ====")
+	// v.Run(&sleep)
 
 	fmt.Println("==== Operation and Worker example ====")
 	v.Run(&operationAndWorker)
@@ -162,4 +190,7 @@ func main() {
 
 	fmt.Println("==== Loop Test ====")
 	v.Run(&loopTest)
+
+	fmt.Println("==== Function Power Test ====")
+	v.Run(&printPower)
 }

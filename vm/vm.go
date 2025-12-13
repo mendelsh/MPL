@@ -13,16 +13,22 @@ type Block struct {
 	Instructions []byte
 	Constants    []any
 	NumLocals    int
+	localsFn     []any
 }
 
 type VM struct {
 	WG *sync.WaitGroup
 }
 
-func (v VM) Run(block *Block) {
+func (v VM) Run(block *Block) any {
 	ip := 0
 	stack := []any{}
-	locals := make([]any, block.NumLocals)
+	var locals []any
+	if block.localsFn != nil {
+		locals = block.localsFn
+	} else {
+		locals = make([]any, block.NumLocals)
+	}
 	instructions := block.Instructions
 	constants := block.Constants
 
@@ -33,7 +39,7 @@ func (v VM) Run(block *Block) {
 		switch op {
 
 		case bytecode.OP_HALT:
-			return
+			return nil
 
 		case bytecode.OP_PUSH_CONST:
 			idx := int(instructions[ip])
@@ -410,8 +416,35 @@ func (v VM) Run(block *Block) {
 			}
 			stack = stack[:len(stack)-1]
 
+		case bytecode.OP_CALL_FUNCTION:
+			idx := int(instructions[ip])
+			ip++
+			numArgs := int(instructions[ip])
+			ip++
+
+			args := stack[len(stack)-numArgs:]
+			stack = stack[:len(stack)-numArgs]
+
+			fnBlock := constants[idx].(*Block)
+			fnBlock.localsFn = make([]any, fnBlock.NumLocals)
+			copy(fnBlock.localsFn, args)
+
+			result := v.Run(fnBlock)
+			if result != nil {
+				stack = append(stack, result)
+			}
+
+		case bytecode.OP_RETURN:
+			if len(stack) > 0 {
+				return stack[len(stack)-1]
+			} else {
+				return nil
+			}
+
 		default:
 			panic("unknown opcode")
 		}
 	}
+
+	return nil
 }
