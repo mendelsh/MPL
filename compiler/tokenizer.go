@@ -49,23 +49,18 @@ const (
 	TOKEN_RETURN
 	TOKEN_KEYWORD_END
 
-	// Identifiers and literals
+	// Identifiers
 	TOKEN_IDENTIFIER
-	TOKEN_LITERAL
-	TOKEN_NUMBER
-	TOKEN_STRING
-	TOKEN_BOOLEAN
-	TOKEN_LITERAL_END
 
-	// Operators
+	// Binary operators
 	TOKEN_BINARY_OPERATO
 	TOKEN_ASSIGN        // =
 	TOKEN_PLUS          // +
 	TOKEN_MINUS         // -
 	TOKEN_ASTERISK      // *
+	TOKEN_POWER         // **
 	TOKEN_SLASH         // /
 	TOKEN_PERCENT       // %
-	TOKEN_CARET         // ^
 	TOKEN_EQUAL         // ==
 	TOKEN_NOT_EQUAL     // !=
 	TOKEN_LESS_THAN     // <
@@ -74,14 +69,20 @@ const (
 	TOKEN_GREATER_EQUAL // >=
 	TOKEN_AND           // and
 	TOKEN_OR            // or
-	TOKEN_NOT           // not
 	TOKEN_BITWISE_AND   // &
 	TOKEN_BITWISE_OR    // |
 	TOKEN_BITWISE_XOR   // ^
-	TOKEN_BITWISE_NOT   // ~
 	TOKEN_LEFT_SHIFT    // <<
 	TOKEN_RIGHT_SHIFT   // >>
 	TOKEN_BINARY_OPERATO_END
+
+	// unary operators
+	TOKEN_UNARY_OPERATO
+	TOKEN_NOT         // not
+	TOKEN_BITWISE_NOT // ~
+	TOKEN_PLUS_PLUS   // ++
+	TOKEN_MINUS_MINUS // --
+	TOKEN_UNARY_OPERATO_END
 
 	// Delimiters
 	TOKEN_DELIMITER
@@ -91,12 +92,6 @@ const (
 	TOKEN_ARROW  // ->
 	TOKEN_DELIMITER_END
 
-	// Built-in functions
-	TOKEN_BI_F
-	TOKEN_PRINT // print
-	TOKEN_SLEEP // sleep
-	TOKEN_BI_F_END
-
 	// Others
 	TOKEN_DOT
 	TOKEN_NEWLINE
@@ -104,6 +99,18 @@ const (
 	TOKEN_DEDENT
 
 	TOKEN_UNKNOWN
+
+	// Built-in functions
+	TOKEN_BI_F
+	TOKEN_PRINT // print
+	TOKEN_SLEEP // sleep
+	TOKEN_BI_F_END
+
+	TOKEN_LITERAL
+	TOKEN_NUMBER
+	TOKEN_STRING
+	TOKEN_BOOLEAN
+	TOKEN_LITERAL_END
 )
 
 type Token struct {
