@@ -2,6 +2,7 @@ package builtins
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -51,11 +52,9 @@ const (
 	BO_GREATER_EQUAL
 	BO_AND
 	BO_OR
-	BO_NOT
 	BO_BITWISE_AND
 	BO_BITWISE_OR
 	BO_BITWISE_XOR
-	BO_BITWISE_NOT
 	BO_LEFT_SHIFT
 	BO_RIGHT_SHIFT
 	BO_BIG_ADD
@@ -73,8 +72,32 @@ const (
 	BO_BIG_AND
 	BO_BIG_OR
 	BO_BIG_XOR
-	BO_BIG_NOT
 	BO_BIG_LEFT_SHIFT
 	BO_BIG_RIGHT_SHIFT
 	BO_CONCATENATE
+	BO_unary
+	BO_NOT
+	BO_BITWISE_NOT
+	BO_BIG_NOT
 )
+
+var Operations = [...]func(stack []any) any{
+	BO_ADD: func(stack []any) any {
+		return stack[len(stack)-2].(float64) + stack[len(stack)-1].(float64)
+	},
+	BO_SUBTRACT: func(stack []any) any {
+		return stack[len(stack)-2].(float64) - stack[len(stack)-1].(float64)
+	},
+	BO_MULTIPLY: func(stack []any) any {
+		return stack[len(stack)-2].(float64) * stack[len(stack)-1].(float64)
+	},
+	BO_DIVIDE: func(stack []any) any {
+		return stack[len(stack)-2].(float64) / stack[len(stack)-1].(float64)
+	},
+	BO_MODULO: func(stack []any) any {
+		return stack[len(stack)-2].(int) % stack[len(stack)-1].(int)
+	},
+	BO_POWER: func(stack []any) any {
+		return math.Pow(stack[len(stack)-2].(float64), stack[len(stack)-1].(float64))
+	},
+}
