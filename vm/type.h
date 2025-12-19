@@ -10,7 +10,9 @@ typedef enum /* Type */ {
     STRING,
     STRING_LITERAL,
     BOOL,
+    FUNCTION,
     NONE,
+    TYPE_T,
 } Type;
 
 typedef union /* type_u */ {
@@ -25,8 +27,6 @@ typedef struct /* type_t */ {
     Type type;
     type_u value;
 } type_t;
-
-
 
 
 

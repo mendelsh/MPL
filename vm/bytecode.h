@@ -20,13 +20,15 @@ typedef enum {
     PUSH_CONST,
     PUSH_LOCAL,
     STORE_LOCAL,
+    PUSH,
+    STORE,
     POP,
     CALL_OP,
+    JUMP,
+    JUMP_FALSE,
     CALL_C_FUNC,
     CALL_FUNC,
     RETURN,
-    JUMP,
-    JUMP_FALSE,
 
     // might be implemented in the future
     START_WORKER,
@@ -35,6 +37,12 @@ typedef enum {
     INC,
     DEC,
 } Bytecode;
+
+enum {
+    CF_CONSTANT,
+    CF_LOCAL,
+    CF_GLOBAL,
+};
 
 
 
