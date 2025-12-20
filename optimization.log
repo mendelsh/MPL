@@ -1,0 +1,238 @@
+./vm/builtin.h:124:5: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:119:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:116:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:113:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:110:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:107:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_init/63 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memset/47 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push_n/59 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push/58 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push/58 (always_inline).
+./vm/vm.c:132:17: optimized:   Inlining fprintf/14 into vm_run/71 (always_inline).
+./vm/vm.c:116:33: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.c:109:25: optimized:  Inlining builtin_func/26 into vm_run/71.
+./vm/vm.c:86:37: optimized:  Inlining operation_unary/24 into vm_run/71.
+./vm/vm.c:83:22: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/96->stack_pop.part.0/104
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/96->stack_pop.part.0/104
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/96->stack_push.part.0/109
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/96->stack_push.part.0/109
+./vm/vm.c:23:5: optimized:  Inlined frame_init.constprop/111 into vm_run/71 which now has time 769.053658 and size 425, net change of -9.
+./vm/vm.c:163:9: optimized:  Inlined frame_pop.isra/112 into vm_run/71 which now has time 766.607596 and size 481, net change of -10.
+./vm/vm.c:145:9: optimized:  Inlined stack_push_n/59 into vm_run/71 which now has time 818.861033 and size 530, net change of -12.
+./vm/vm.c:168:9: optimized:  Inlined stack_pop_n/61 into vm_run/71 which now has time 819.007774 and size 576, net change of -9.
+./vm/builtin.h:132:33: optimized:  Inlined builtin_print/25 into vm_run/71 which now has time 882.977851 and size 616, net change of -7.
+./vm/vm.c:89:22: optimized:  Inlined operation/23 into vm_run/71 which now has time 883.505590 and size 702, net change of -46.
+./vm/vm.c:24:5: optimized:  Inlined frame_push/113 into vm_run/71 which now has time 893.719513 and size 733, net change of +31.
+./vm/vm.c:154:9: optimized:  Inlined frame_push/64 into vm_run/71 which now has time 903.923235 and size 765, net change of -11.
+./vm/vm.c:110:24: optimized:  Inlined stack_pop/114 into vm_run/71 which now has time 953.353343 and size 815, net change of +50.
+./vm/vm.c:111:9: optimized:  Inlined stack_push/115 into vm_run/71 which now has time 968.209321 and size 846, net change of +31.
+./vm/vm.c:68:9: optimized:  Inlined stack_push/116 into vm_run/71 which now has time 983.065299 and size 878, net change of +32.
+./vm/vm.c:91:9: optimized:  Inlined stack_push/117 into vm_run/71 which now has time 997.921277 and size 909, net change of +31.
+./vm/vm.c:59:9: optimized:  Inlined stack_push/118 into vm_run/71 which now has time 1012.777255 and size 941, net change of +32.
+./vm/vm.c:55:9: optimized:  Inlined stack_push/119 into vm_run/71 which now has time 1027.633236 and size 972, net change of +31.
+./vm/vm.c:169:9: optimized:  Inlined stack_push/58 into vm_run/71 which now has time 1042.489216 and size 1004, net change of -11.
+./vm/vm.c:73:41: optimized:  Inlined read_i32/120 into vm_run/71 which now has time 1043.988466 and size 1019, net change of +15.
+./vm/vm.c:178:16: optimized:  Inlined read_i32/121 into vm_run/71 which now has time 1045.487719 and size 1034, net change of +15.
+./vm/vm.c:100:22: optimized:  Inlined read_i32/122 into vm_run/71 which now has time 1046.986971 and size 1049, net change of +15.
+./vm/vm.c:63:16: optimized:  Inlined read_i32/123 into vm_run/71 which now has time 1048.486223 and size 1064, net change of +15.
+./vm/vm.c:68:36: optimized:  Inlined read_i32/124 into vm_run/71 which now has time 1049.985474 and size 1079, net change of +15.
+./vm/vm.c:106:28: optimized:  Inlined read_i32/125 into vm_run/71 which now has time 1051.484726 and size 1094, net change of +15.
+./vm/vm.c:182:16: optimized:  Inlined read_i32/126 into vm_run/71 which now has time 1052.983978 and size 1109, net change of +15.
+./vm/vm.c:59:39: optimized:  Inlined read_i32/127 into vm_run/71 which now has time 1054.483231 and size 1124, net change of +15.
+./vm/vm.c:55:49: optimized:  Inlined read_i32/128 into vm_run/71 which now has time 1055.982481 and size 1139, net change of +15.
+./vm/vm.c:107:20: optimized:  Inlined read_i32/129 into vm_run/71 which now has time 1057.481733 and size 1154, net change of +15.
+./vm/vm.c:96:14: optimized:  Inlined read_i32/130 into vm_run/71 which now has time 1058.980986 and size 1169, net change of +15.
+./vm/vm.c:67:41: optimized:  Inlined read_i32/131 into vm_run/71 which now has time 1060.480238 and size 1184, net change of +15.
+./vm/vm.c:74:13: optimized:  Inlined read_i32/132 into vm_run/71 which now has time 1061.979488 and size 1199, net change of +15.
+./vm/vm.c:137:20: optimized:  Inlined read_i32/133 into vm_run/71 which now has time 1063.477991 and size 1214, net change of +15.
+./vm/vm.c:127:49: optimized:  Inlined read_i32/134 into vm_run/71 which now has time 1063.977491 and size 1229, net change of +15.
+./vm/vm.c:121:45: optimized:  Inlined read_i32/135 into vm_run/71 which now has time 1064.476992 and size 1244, net change of +15.
+./vm/vm.c:124:35: optimized:  Inlined read_i32/136 into vm_run/71 which now has time 1064.976492 and size 1259, net change of +15.
+./vm/vm.c:128:32: optimized:  Inlined read_i32/70 into vm_run/71 which now has time 1065.475994 and size 1274, net change of -8.
+./vm/vm.c:84:20: optimized:  Inlined stack_pop/137 into vm_run/71 which now has time 1070.585833 and size 1323, net change of +49.
+./vm/vm.c:74:51: optimized:  Inlined stack_pop/138 into vm_run/71 which now has time 1075.695673 and size 1372, net change of +49.
+./vm/vm.c:63:54: optimized:  Inlined stack_pop/139 into vm_run/71 which now has time 1080.805513 and size 1421, net change of +49.
+./vm/vm.c:101:14: optimized:  Inlined stack_pop/140 into vm_run/71 which now has time 1085.915354 and size 1470, net change of +49.
+./vm/vm.c:167:31: optimized:  Inlined stack_pop/141 into vm_run/71 which now has time 1091.025192 and size 1519, net change of +49.
+./vm/vm.c:79:9: optimized:  Inlined stack_pop/142 into vm_run/71 which now has time 1097.134533 and size 1569, net change of +50.
+./vm/vm.c:88:24: optimized:  Inlined stack_pop/60 into vm_run/71 which now has time 1098.820778 and size 1618, net change of -11.
+./vm/vm.h:63:1: optimized: basic block part vectorized using 16 byte vectors
+./vm/vm.h:63:1: optimized: basic block part vectorized using 16 byte vectors
+./vm/vm.h:63:1: optimized: basic block part vectorized using 16 byte vectors
+./vm/builtin.h:73:61: optimized: sinking common stores to result.value.bool_u
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_init/57 (always_inline).
+./main.c:118:5: optimized:  Inlined stack_init.constprop/77 into main/69 which now has time 61.825630 and size 46, net change of -24.
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./vm/builtin.h:124:5: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:119:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:116:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:113:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:110:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:107:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_init/63 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memset/47 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push_n/59 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push/58 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push/58 (always_inline).
+./vm/vm.c:132:17: optimized:   Inlining fprintf/14 into vm_run/71 (always_inline).
+./vm/vm.c:116:33: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.c:109:25: optimized:  Inlining builtin_func/26 into vm_run/71.
+./vm/vm.c:86:37: optimized:  Inlining operation_unary/24 into vm_run/71.
+./vm/vm.c:83:22: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/96->stack_pop.part.0/104
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/96->stack_pop.part.0/104
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/96->stack_push.part.0/109
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/96->stack_push.part.0/109
+./vm/vm.c:23:5: optimized:  Inlined frame_init.constprop/111 into vm_run/71 which now has time 771.052660 and size 427, net change of -9.
+./vm/vm.c:163:9: optimized:  Inlined frame_pop.isra/112 into vm_run/71 which now has time 770.604752 and size 487, net change of -10.
+./vm/vm.c:145:9: optimized:  Inlined stack_push_n/59 into vm_run/71 which now has time 822.858188 and size 536, net change of -12.
+./vm/vm.c:168:9: optimized:  Inlined stack_pop_n/61 into vm_run/71 which now has time 823.004929 and size 582, net change of -9.
+./vm/builtin.h:132:33: optimized:  Inlined builtin_print/25 into vm_run/71 which now has time 886.975005 and size 622, net change of -7.
+./vm/vm.c:89:22: optimized:  Inlined operation/23 into vm_run/71 which now has time 887.502745 and size 708, net change of -46.
+./vm/vm.c:24:5: optimized:  Inlined frame_push/113 into vm_run/71 which now has time 898.716404 and size 740, net change of +32.
+./vm/vm.c:154:9: optimized:  Inlined frame_push/64 into vm_run/71 which now has time 909.918864 and size 773, net change of -12.
+./vm/vm.c:110:24: optimized:  Inlined stack_pop/114 into vm_run/71 which now has time 959.348972 and size 823, net change of +50.
+./vm/vm.c:111:9: optimized:  Inlined stack_push/115 into vm_run/71 which now has time 974.204950 and size 854, net change of +31.
+./vm/vm.c:68:9: optimized:  Inlined stack_push/116 into vm_run/71 which now has time 989.060928 and size 886, net change of +32.
+./vm/vm.c:91:9: optimized:  Inlined stack_push/117 into vm_run/71 which now has time 1003.916906 and size 917, net change of +31.
+./vm/vm.c:59:9: optimized:  Inlined stack_push/118 into vm_run/71 which now has time 1018.772884 and size 949, net change of +32.
+./vm/vm.c:55:9: optimized:  Inlined stack_push/119 into vm_run/71 which now has time 1033.628864 and size 980, net change of +31.
+./vm/vm.c:169:9: optimized:  Inlined stack_push/58 into vm_run/71 which now has time 1048.484844 and size 1012, net change of -11.
+./vm/vm.c:73:41: optimized:  Inlined read_i32/120 into vm_run/71 which now has time 1049.984095 and size 1027, net change of +15.
+./vm/vm.c:178:16: optimized:  Inlined read_i32/121 into vm_run/71 which now has time 1051.483347 and size 1042, net change of +15.
+./vm/vm.c:100:22: optimized:  Inlined read_i32/122 into vm_run/71 which now has time 1052.982599 and size 1057, net change of +15.
+./vm/vm.c:63:16: optimized:  Inlined read_i32/123 into vm_run/71 which now has time 1054.481852 and size 1072, net change of +15.
+./vm/vm.c:68:36: optimized:  Inlined read_i32/124 into vm_run/71 which now has time 1055.981102 and size 1087, net change of +15.
+./vm/vm.c:106:28: optimized:  Inlined read_i32/125 into vm_run/71 which now has time 1057.480354 and size 1102, net change of +15.
+./vm/vm.c:182:16: optimized:  Inlined read_i32/126 into vm_run/71 which now has time 1058.979607 and size 1117, net change of +15.
+./vm/vm.c:59:39: optimized:  Inlined read_i32/127 into vm_run/71 which now has time 1060.478859 and size 1132, net change of +15.
+./vm/vm.c:55:49: optimized:  Inlined read_i32/128 into vm_run/71 which now has time 1061.978109 and size 1147, net change of +15.
+./vm/vm.c:107:20: optimized:  Inlined read_i32/129 into vm_run/71 which now has time 1063.477362 and size 1162, net change of +15.
+./vm/vm.c:96:14: optimized:  Inlined read_i32/130 into vm_run/71 which now has time 1064.976614 and size 1177, net change of +15.
+./vm/vm.c:67:41: optimized:  Inlined read_i32/131 into vm_run/71 which now has time 1066.475866 and size 1192, net change of +15.
+./vm/vm.c:74:13: optimized:  Inlined read_i32/132 into vm_run/71 which now has time 1067.975117 and size 1207, net change of +15.
+./vm/vm.c:137:20: optimized:  Inlined read_i32/133 into vm_run/71 which now has time 1069.473619 and size 1222, net change of +15.
+./vm/vm.c:127:49: optimized:  Inlined read_i32/134 into vm_run/71 which now has time 1069.973120 and size 1237, net change of +15.
+./vm/vm.c:121:45: optimized:  Inlined read_i32/135 into vm_run/71 which now has time 1070.472620 and size 1252, net change of +15.
+./vm/vm.c:124:35: optimized:  Inlined read_i32/136 into vm_run/71 which now has time 1070.972120 and size 1267, net change of +15.
+./vm/vm.c:128:32: optimized:  Inlined read_i32/70 into vm_run/71 which now has time 1071.471622 and size 1282, net change of -8.
+./vm/vm.c:84:20: optimized:  Inlined stack_pop/137 into vm_run/71 which now has time 1076.581461 and size 1331, net change of +49.
+./vm/vm.c:74:51: optimized:  Inlined stack_pop/138 into vm_run/71 which now has time 1081.691301 and size 1380, net change of +49.
+./vm/vm.c:63:54: optimized:  Inlined stack_pop/139 into vm_run/71 which now has time 1086.801142 and size 1429, net change of +49.
+./vm/vm.c:101:14: optimized:  Inlined stack_pop/140 into vm_run/71 which now has time 1091.910982 and size 1478, net change of +49.
+./vm/vm.c:167:31: optimized:  Inlined stack_pop/141 into vm_run/71 which now has time 1097.020821 and size 1527, net change of +49.
+./vm/vm.c:79:9: optimized:  Inlined stack_pop/142 into vm_run/71 which now has time 1103.130161 and size 1577, net change of +50.
+./vm/vm.c:88:24: optimized:  Inlined stack_pop/60 into vm_run/71 which now has time 1104.816406 and size 1626, net change of -11.
+./vm/builtin.h:73:61: optimized: sinking common stores to result.value.bool_u
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_init/57 (always_inline).
+./main.c:118:5: optimized:  Inlined stack_init.constprop/77 into main/69 which now has time 68.825630 and size 50, net change of -24.
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./vm/builtin.h:173:5: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:168:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:165:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:162:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:159:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:156:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/builtin.h:153:17: optimized:   Inlining printf/15 into builtin_print/25 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_init/63 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memset/47 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push_n/59 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push_n/59 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_push/64 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining memcpy/45 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:63:1: optimized:   Inlining fprintf/14 into frame_pop/66 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop/60 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_pop_n/61 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining memcpy/45 into stack_push/58 (always_inline).
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_push/58 (always_inline).
+./vm/vm.c:132:17: optimized:   Inlining fprintf/14 into vm_run/71 (always_inline).
+./vm/vm.c:89:22: optimized:   Inlining operation/23 into vm_run/71 (always_inline).
+./vm/vm.c:116:33: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.c:109:25: optimized:  Inlining builtin_func/26 into vm_run/71.
+./vm/vm.c:86:37: optimized:  Inlining operation_unary/24 into vm_run/71.
+./vm/vm.c:83:22: optimized:  Inlining read_u8/69 into vm_run/71.
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/97->stack_pop.part.0/105
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/97->stack_pop.part.0/105
+./vm/vm.h:63:1: optimized: Semantic equality hit:frame_push.part.0/97->stack_push.part.0/110
+./vm/vm.h:63:1: optimized: Assembler symbol names:frame_push.part.0/97->stack_push.part.0/110
+./vm/vm.c:23:5: optimized:  Inlined frame_init.constprop/112 into vm_run/71 which now has time 773.509907 and size 555, net change of -9.
+./vm/vm.c:163:9: optimized:  Inlined frame_pop.isra/113 into vm_run/71 which now has time 773.061998 and size 615, net change of -10.
+./vm/vm.c:145:9: optimized:  Inlined stack_push_n/59 into vm_run/71 which now has time 825.315433 and size 664, net change of -12.
+./vm/vm.c:168:9: optimized:  Inlined stack_pop_n/61 into vm_run/71 which now has time 825.462174 and size 710, net change of -9.
+./vm/builtin.h:181:33: optimized:  Inlined builtin_print/25 into vm_run/71 which now has time 889.610144 and size 757, net change of -7.
+./vm/vm.c:24:5: optimized:  Inlined frame_push/114 into vm_run/71 which now has time 900.823803 and size 789, net change of +32.
+./vm/vm.c:154:9: optimized:  Inlined frame_push/64 into vm_run/71 which now has time 912.026263 and size 822, net change of -12.
+./vm/vm.c:110:24: optimized:  Inlined stack_pop/115 into vm_run/71 which now has time 961.456369 and size 872, net change of +50.
+./vm/vm.c:169:9: optimized:  Inlined stack_push/116 into vm_run/71 which now has time 976.312347 and size 903, net change of +31.
+./vm/vm.c:111:9: optimized:  Inlined stack_push/117 into vm_run/71 which now has time 991.168326 and size 935, net change of +32.
+./vm/vm.c:59:9: optimized:  Inlined stack_push/118 into vm_run/71 which now has time 1006.024304 and size 966, net change of +31.
+./vm/vm.c:55:9: optimized:  Inlined stack_push/119 into vm_run/71 which now has time 1020.880283 and size 998, net change of +32.
+./vm/vm.c:68:9: optimized:  Inlined stack_push/120 into vm_run/71 which now has time 1035.736263 and size 1029, net change of +31.
+./vm/vm.c:91:9: optimized:  Inlined stack_push/58 into vm_run/71 which now has time 1050.592243 and size 1061, net change of -11.
+./vm/vm.c:182:16: optimized:  Inlined read_i32/121 into vm_run/71 which now has time 1052.091496 and size 1076, net change of +15.
+./vm/vm.c:100:22: optimized:  Inlined read_i32/122 into vm_run/71 which now has time 1053.590746 and size 1091, net change of +15.
+./vm/vm.c:73:41: optimized:  Inlined read_i32/123 into vm_run/71 which now has time 1055.089998 and size 1106, net change of +15.
+./vm/vm.c:74:13: optimized:  Inlined read_i32/124 into vm_run/71 which now has time 1056.589249 and size 1121, net change of +15.
+./vm/vm.c:96:14: optimized:  Inlined read_i32/125 into vm_run/71 which now has time 1058.088501 and size 1136, net change of +15.
+./vm/vm.c:107:20: optimized:  Inlined read_i32/126 into vm_run/71 which now has time 1059.587751 and size 1151, net change of +15.
+./vm/vm.c:67:41: optimized:  Inlined read_i32/127 into vm_run/71 which now has time 1061.087004 and size 1166, net change of +15.
+./vm/vm.c:63:16: optimized:  Inlined read_i32/128 into vm_run/71 which now has time 1062.586254 and size 1181, net change of +15.
+./vm/vm.c:59:39: optimized:  Inlined read_i32/129 into vm_run/71 which now has time 1064.085506 and size 1196, net change of +15.
+./vm/vm.c:68:36: optimized:  Inlined read_i32/130 into vm_run/71 which now has time 1065.584757 and size 1211, net change of +15.
+./vm/vm.c:55:49: optimized:  Inlined read_i32/131 into vm_run/71 which now has time 1067.084009 and size 1226, net change of +15.
+./vm/vm.c:106:28: optimized:  Inlined read_i32/132 into vm_run/71 which now has time 1068.583260 and size 1241, net change of +15.
+./vm/vm.c:178:16: optimized:  Inlined read_i32/133 into vm_run/71 which now has time 1070.082512 and size 1256, net change of +15.
+./vm/vm.c:137:20: optimized:  Inlined read_i32/134 into vm_run/71 which now has time 1071.581013 and size 1271, net change of +15.
+./vm/vm.c:124:35: optimized:  Inlined read_i32/135 into vm_run/71 which now has time 1072.080515 and size 1286, net change of +15.
+./vm/vm.c:127:49: optimized:  Inlined read_i32/136 into vm_run/71 which now has time 1072.580015 and size 1301, net change of +15.
+./vm/vm.c:121:45: optimized:  Inlined read_i32/137 into vm_run/71 which now has time 1073.079517 and size 1316, net change of +15.
+./vm/vm.c:128:32: optimized:  Inlined read_i32/70 into vm_run/71 which now has time 1073.579018 and size 1331, net change of -8.
+./vm/vm.c:74:51: optimized:  Inlined stack_pop/138 into vm_run/71 which now has time 1078.688858 and size 1380, net change of +49.
+./vm/vm.c:167:31: optimized:  Inlined stack_pop/139 into vm_run/71 which now has time 1083.798698 and size 1429, net change of +49.
+./vm/vm.c:101:14: optimized:  Inlined stack_pop/140 into vm_run/71 which now has time 1088.908539 and size 1478, net change of +49.
+./vm/vm.c:63:54: optimized:  Inlined stack_pop/141 into vm_run/71 which now has time 1094.018377 and size 1527, net change of +49.
+./vm/vm.c:84:20: optimized:  Inlined stack_pop/142 into vm_run/71 which now has time 1099.128218 and size 1576, net change of +49.
+./vm/vm.c:79:9: optimized:  Inlined stack_pop/143 into vm_run/71 which now has time 1105.237558 and size 1626, net change of +50.
+./vm/vm.c:88:24: optimized:  Inlined stack_pop/60 into vm_run/71 which now has time 1106.923803 and size 1675, net change of -11.
+./vm/builtin.h:118:61: optimized: sinking common stores to result.value.bool_u
+./vm/vm.h:60:1: optimized:   Inlining fprintf/14 into stack_init/57 (always_inline).
+./main.c:118:5: optimized:  Inlined stack_init.constprop/77 into main/69 which now has time 68.825630 and size 50, net change of -24.
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors
+./main.c:120:10: optimized: basic block part vectorized using 16 byte vectors

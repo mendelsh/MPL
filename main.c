@@ -3,7 +3,7 @@
 
 int main() {
 
-    double fib_max = 33.0;
+    double fib_max = 33;
 
     // Fibonacci function
     // fib(n) ->
@@ -95,8 +95,8 @@ int main() {
     type_t consts[] = {
         fib_block_type,                                                         // 0
         (type_t){.type = STRING_LITERAL, .value = {.str_literal_u = "fib("}},   // 1
-        (type_t){.type = NUMBER, .value = {.float_u = 0}},                      // 2
-        (type_t){.type = NUMBER, .value = {.float_u = fib_max+1}},                // 3
+        (type_t){.type = NUMBER, .value = {.float_u = 0}},                           // 2
+        (type_t){.type = NUMBER, .value = {.float_u = fib_max+1}},              // 3
         (type_t){.type = STRING_LITERAL, .value = {.str_literal_u = ") = "}},   // 4
     };
 

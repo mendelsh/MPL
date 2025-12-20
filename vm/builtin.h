@@ -59,7 +59,53 @@ typedef enum /* BuiltinFunction */ {
     BF_PRINT,
 } BuiltinFunc;
 
-static inline type_t operation(Op op, type_t left, type_t right) {
+/*
+#define operation(op, left, right, result)                                                                       \
+    static void *dispatch_op_table[] = {                                                                 \
+        [OP_ADD] = &&op_add,                                                                             \
+        [OP_SUB] = &&op_sub,                                                                             \
+        [OP_MUL] = &&op_mul,                                                                             \
+        [OP_POW] = &&op_pow,                                                                             \
+        [OP_DIV] = &&op_div,                                                                             \
+        [OP_MOD] = &&op_mod,                                                                             \
+        [OP_EQ] = &&op_eq,                                                                               \
+        [OP_NE] = &&op_ne,                                                                               \
+        [OP_LT] = &&op_lt,                                                                               \
+        [OP_GT] = &&op_gt,                                                                               \
+        [OP_LE] = &&op_le,                                                                               \
+        [OP_GE] = &&op_ge,                                                                               \
+        [OP_AND] = &&op_and,                                                                             \
+        [OP_OR] = &&op_or,                                                                               \
+        [OP_BIT_AND] = &&op_bit_and,                                                                     \
+        [OP_BIT_OR] = &&op_bit_or,                                                                       \
+        [OP_BIT_XOR] = &&op_bit_xor,                                                                     \
+        [OP_BIT_SHL] = &&op_bit_shl,                                                                     \
+        [OP_BIT_SHR] = &&op_bit_shr,                                                                     \
+    };                                                                                                   \
+    goto *dispatch_op_table[op];                                                                         \
+    op_add: result = (type_t){.type = NUMBER, .value.float_u = left.value.float_u + right.value.float_u}; goto end; \
+    op_sub: result = (type_t){.type = NUMBER, .value.float_u = left.value.float_u - right.value.float_u}; goto end; \
+    op_mul: result = (type_t){.type = NUMBER, .value.float_u = left.value.float_u * right.value.float_u}; goto end; \
+    op_pow: result = (type_t){.type = NUMBER, .value.float_u = pow(left.value.float_u, right.value.float_u)}; goto end; \
+    op_div: result = (type_t){.type = NUMBER, .value.float_u = left.value.float_u / right.value.float_u}; goto end; \
+    op_mod: result = (type_t){.type = NUMBER, .value.float_u = fmod(left.value.float_u, right.value.float_u)}; goto end; \
+    op_eq: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u == right.value.float_u}; goto end; \
+    op_ne: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u != right.value.float_u}; goto end; \
+    op_lt: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u < right.value.float_u}; goto end; \
+    op_gt: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u > right.value.float_u}; goto end; \
+    op_le: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u <= right.value.float_u}; goto end; \
+    op_ge: result = (type_t){.type = BOOL, .value.bool_u = left.value.float_u >= right.value.float_u}; goto end; \
+    op_and: result = (type_t){.type = BOOL, .value.bool_u = left.value.bool_u && right.value.bool_u}; goto end; \
+    op_or: result = (type_t){.type = BOOL, .value.bool_u = left.value.bool_u || right.value.bool_u}; goto end; \
+    op_bit_and: result = (type_t){.type = NUMBER, .value.int_u = left.value.int_u & right.value.int_u}; goto end; \
+    op_bit_or: result = (type_t){.type = NUMBER, .value.int_u = left.value.int_u | right.value.int_u}; goto end; \
+    op_bit_xor: result = (type_t){.type = NUMBER, .value.int_u = left.value.int_u ^ right.value.int_u}; goto end; \
+    op_bit_shl: result = (type_t){.type = NUMBER, .value.int_u = left.value.int_u << right.value.int_u}; goto end; \
+    op_bit_shr: result = (type_t){.type = NUMBER, .value.int_u = left.value.int_u >> right.value.int_u}; goto end; \
+    end:
+*/
+
+static inline __attribute__((always_inline)) type_t operation(Op op, type_t left, type_t right) {
     type_t result = {.type = NONE, .value = {0}};
 
     switch (op) {
@@ -108,6 +154,9 @@ static inline type_t builtin_print(int argc, type_t *argv) {
                 break;
             case NUMBER:
                 printf("%f", argv[i].value.float_u);
+                break;
+            case INT:
+                printf("%ld", argv[i].value.int_u);
                 break;
             case BOOL:
                 printf("%s", argv[i].value.bool_u ? "true" : "false");

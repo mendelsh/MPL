@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+# run.sh
+
 # compile all C files in the current directory to a temp file (without info) run it and delete it (also delete on any exit of the program)
 
 set -e
 
 COMP_TIME_START=$(date +%s)
 
-OPT_FLAGS="-O2 -Wall -Wextra"
+OPT_FLAGS="-O3 -ffast-math -Wall -Wextra"
 CFILES=$(find . -type f -name "*.c")
 OUTPUT="temp.out"
 
