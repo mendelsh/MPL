@@ -30,12 +30,11 @@ typedef enum {
     CALL_FUNC,
     RETURN,
 
+    INC_LOCAL,
+    DEC_LOCAL,
+
     // might be implemented in the future
     START_WORKER,
-
-    // might be implemented
-    INC,
-    DEC,
 } Bytecode;
 
 enum {

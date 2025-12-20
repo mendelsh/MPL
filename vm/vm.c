@@ -135,7 +135,7 @@ void vm_run(vm_t *vm, block_t *main_block) {
                 caller->locals = locals;
                 caller->stack_base = vm->stack.size - argc;
 
-                while (vm->stack.size - caller->stack_base < func->local_count) stack_push(&vm->stack, (type_t){ .type = NONE });
+                stack_push_n(&vm->stack, func->local_count - argc);
 
                 frame_t callee = {
                     .block = func,
@@ -159,7 +159,7 @@ void vm_run(vm_t *vm, block_t *main_block) {
                 frame_t *caller_frame = &stack_frames.data[frame_index];
 
                 type_t return_value = stack_pop(&vm->stack);
-                while (vm->stack.size > caller_frame->stack_base) stack_pop(&vm->stack);
+                stack_pop_n(&vm->stack, vm->stack.size - caller_frame->stack_base);
                 stack_push(&vm->stack, return_value);
 
                 ip = caller_frame->ip;
@@ -167,6 +167,9 @@ void vm_run(vm_t *vm, block_t *main_block) {
                 locals = caller_frame->locals;
                 break;
             }
+
+            case INC_LOCAL: locals[read_i32(block->instructions, &ip)].value.float_u += 1; break;
+            case DEC_LOCAL: locals[read_i32(block->instructions, &ip)].value.float_u -= 1; break;
 
             default: {
                 fprintf(stderr, "Unknown opcode: %d\n", opcode);

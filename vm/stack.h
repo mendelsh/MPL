@@ -58,6 +58,23 @@ static inline void name##_free(type_name *name);
     }                                                                                       \
     slice->data[slice->size++] = item
 
+#define SLICE_PUSH_N_UNINITIALIZED(slice, n, type)                                          \
+    if (slice->size + n >= slice->capacity) {                                               \
+        type *new_data = malloc(slice->capacity * STACK_GROWTH_FACTOR * sizeof(type) + n);  \
+        if (!new_data) {                                                                    \
+            fprintf(stderr, "Failed to allocate memory for stack\n");                       \
+            exit(EXIT_FAILURE);                                                             \
+        }                                                                                   \
+        memcpy(new_data, slice->data, slice->capacity * sizeof(type));                      \
+        if (!slice->is_on_stack) free(slice->data);                                         \
+        slice->data = new_data;                                                             \
+        slice->capacity = slice->capacity * STACK_GROWTH_FACTOR + n;                        \
+        slice->is_on_stack = false;                                                         \
+    }                                                                                       \
+    memset(slice->data + slice->size, 0, n * sizeof(type));                                 \
+    slice->size += n
+    
+
 #define SLICE_POP(slice, type)                                                                                  \
     if (slice->size == 0) {                                                                                     \
         fprintf(stderr, "Stack is empty\n");                                                                    \
@@ -79,6 +96,26 @@ static inline void name##_free(type_name *name);
     }                                                                                                           \
     return slice->data[slice->size]
 
+#define SLICE_POP_N(slice, n, type) \
+    if (slice->size < n) {                                                                                      \
+        fprintf(stderr, "Stack is empty\n");                                                                    \
+        exit(EXIT_FAILURE);                                                                                     \
+    }                                                                                                           \
+    slice->size -= n;                                                                                           \
+    if (!slice->is_on_stack && slice->size > 0 && slice->capacity >= slice->size * STACK_SHRINK_THRESHOLD) {    \
+        size_t new_cap = slice->size * STACK_SHRINK_FACTOR;                                                     \
+        if (new_cap < STACK_MIN_CAPACITY) return;                                                               \
+        type *new_data = malloc(new_cap * sizeof(type));                                                        \
+        if (!new_data) {                                                                                        \
+            fprintf(stderr, "Failed to allocate memory for stack\n");                                           \
+            exit(EXIT_FAILURE);                                                                                 \
+        }                                                                                                       \
+        memcpy(new_data, slice->data, slice->size * sizeof(type));                                              \
+        free(slice->data);                                                                                      \
+        slice->data = new_data;                                                                                 \
+        slice->capacity = new_cap;                                                                              \
+    }                                                                                                           
+
 #define SLICE_FREE(slice)                                                                                       \
     if (!slice->is_on_stack && slice->data) free(slice->data);                                                  \
     slice->data = NULL;                                                                                         \
@@ -93,8 +130,14 @@ static inline void name##_init(type_name *name, size_t capacity, type *buff) {  
 static inline void name##_push(type_name *name, type item) {                        \
     SLICE_PUSH(name, item, type);                                                   \
 }                                                                                   \
+static inline void name##_push_n(type_name *name, size_t n) {                       \
+    SLICE_PUSH_N_UNINITIALIZED(name, n, type);                                      \
+}                                                                                   \
 static inline type name##_pop(type_name *name) {                                    \
     SLICE_POP(name, type);                                                          \
+}                                                                                   \
+static inline void name##_pop_n(type_name *name, size_t n) {                        \
+    SLICE_POP_N(name, n, type)                                                      \
 }                                                                                   \
 static inline void name##_free(type_name *name) {                                   \
     SLICE_FREE(name);                                                               \

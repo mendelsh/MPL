@@ -119,7 +119,7 @@ static inline type_t builtin_print(int argc, type_t *argv) {
                 printf("unknown");
                 break;
         }
-        if (i < argc - 1) printf(" ");
+        // if (i < argc - 1) printf(" ");
     }
     printf("\n");
     return (type_t){.type = NONE, .value = {0}};
