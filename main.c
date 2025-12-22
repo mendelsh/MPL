@@ -3,7 +3,7 @@
 
 int main() {
 
-    double fib_max = 33;
+    double fib_max = 40.0;
 
     // Fibonacci function
     // fib(n) ->

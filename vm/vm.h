@@ -1,7 +1,8 @@
 #ifndef VM_H
 #define VM_H
 
-#include "stack.h"
+#include "../data-structures/stack.h"
+#include "builtin.h"
 
 
 /*
