@@ -7,6 +7,7 @@
 
 typedef enum /* Type */ {
     NUMBER,
+    INT,
     STRING,
     STRING_LITERAL,
     BOOL,

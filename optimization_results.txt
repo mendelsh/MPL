@@ -1,0 +1,45 @@
+No optimization (-O0) | 6954 | -O0
+Basic optimization (-O1) | 1972 | -O1
+Standard optimization (-O2) | 1555 | -O2
+Aggressive optimization (-O3) | 1536 | -O3
+Size optimization (-Os) | 4576 | -Os
+Fast math optimization (-Ofast) | 1520 | -Ofast
+O2 + native arch | 1613 | -O2 -march=native
+O3 + native arch | 1605 | -O3 -march=native
+Ofast + native arch | 1530 | -Ofast -march=native
+O2 + inline functions | 1541 | -O2 -finline-functions
+O2 + unroll loops | 1542 | -O2 -funroll-loops
+O2 + predictive commoning | 1530 | -O2 -fpredictive-commoning
+O2 + gcse after reload | 1545 | -O2 -fgcse-after-reload
+O2 + tree vectorize | 1550 | -O2 -ftree-vectorize
+O2 + ipa cp clone | 1548 | -O2 -fipa-cp-clone
+O3 + profile generate | 2303 | -O3 -fprofile-generate
+O3 + native + profile gen | 1851 | -O3 -march=native -fprofile-generate
+O3 + unroll loops | 1514 | -O3 -funroll-loops
+O3 + unroll all loops | 1544 | -O3 -funroll-all-loops
+O3 + peel loops | 1523 | -O3 -fpeel-loops
+O3 + loop optimize | 1527 | -O3 -floop-optimize
+O3 + native + unroll | 1567 | -O3 -march=native -funroll-loops
+O3 + inline limit 600 | 1516 | -O3 -finline-limit=600
+O3 + inline limit 1000 | 1535 | -O3 -finline-limit=1000
+O3 + inline growth 50 | 1542 | -O3 --param inline-unit-growth=50
+O3 + large func growth | 1539 | -O3 --param large-function-growth=200
+O3 + LTO | 4141 | -O3 -flto
+O2 + LTO | 4095 | -O2 -flto
+O3 + native + LTO | 4695 | -O3 -march=native -flto
+O3 + omit frame pointer | 1521 | -O3 -fomit-frame-pointer
+O2 + omit frame pointer | 1548 | -O2 -fomit-frame-pointer
+O3 + branch probabilities | 1844 | -O3 -fbranch-probabilities
+O3 + guess branch prob | 1518 | -O3 -fguess-branch-probability
+O3 + fast math | 1498 | -O3 -ffast-math
+O3 + native + fast math | 1531 | -O3 -march=native -ffast-math
+O3 + unsafe math | 1509 | -O3 -funsafe-math-optimizations
+O3 + IRA priority | 1553 | -O3 -fira-algorithm=priority
+O3 + schedule insns | 1532 | -O3 -fschedule-insns2
+O2 + native + no frame ptr | 1621 | -O2 -march=native -fomit-frame-pointer
+O3 + native + inline 1000 | 1595 | -O3 -march=native -finline-limit=1000
+O3 + native + fast math | 1533 | -O3 -march=native -ffast-math
+O2 + native + unroll + inline | 1720 | -O2 -march=native -funroll-loops -finline-functions
+O3 + native + vectorize | 1593 | -O3 -march=native -ftree-vectorize
+O3 + all aggressive | 1526 | -O3 -march=native -ffast-math -funroll-loops -finline-limit=1000
+Ofast + native + unroll | 1541 | -Ofast -march=native -funroll-loops
