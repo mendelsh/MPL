@@ -19,7 +19,7 @@ while getopts ":o:" opt; do
     esac
 done
 
-CFILES=$(find . -type f -name "*.c")
+CFILES=$(find . -path "*/test" -prune -o -type f -name "*.c" -print)
 
 # Redirect optimization info to file instead of stdout
 gcc $OPT_FLAGS -fopt-info-optimized=optimization.log -o "$output_file" $CFILES -lm
