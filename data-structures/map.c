@@ -25,8 +25,6 @@
  // TODO: split map into file/'s when it grows too big
 
 
-#define LOAD_FACTOR_THRESHOLD 0.7
-
 // this table was generated using data-structures/prime_generator.py
 static const size_t prime_table[] = {
     1009,
@@ -172,6 +170,24 @@ int map_get(map_t *map, const char *key) {
     }
 
     return -1;
+}
+
+bool map_set(map_t *map, const char *key, int new_index) {
+    if (!map || !key) return false;
+
+    size_t hash = str_hash(key);
+    size_t bucket_index = hash % map->bucket_count;
+
+    map_bucket_t *bucket = map->buckets[bucket_index];
+    while (bucket) {
+        if (strcmp(bucket->key, key) == 0) {
+            bucket->index = new_index;
+            return true;
+        }
+        bucket = bucket->next;
+    }
+
+    return false;
 }
 
 void map_remove(map_t *map, const char *key) {
