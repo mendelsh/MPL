@@ -9,7 +9,7 @@ set -e
 COMP_TIME_START=$(date +%s)
 
 OPT_FLAGS="-O3 -ffast-math -Wall -Wextra"
-CFILES=$(find . -type f -name "*.c")
+CFILES=$(find . -path "*/test" -prune -o -type f -name "*.c" -print)
 OUTPUT="temp.out"
 
 # Clean up on any exit (Ctrl+C, errors, normal exit)

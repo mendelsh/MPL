@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#ifndef LOAD_FACTOR_THRESHOLD
+#define LOAD_FACTOR_THRESHOLD 0.7
+#endif
+
 static inline size_t str_hash(const char *str) {
     size_t hash = 5381;
     int c;
@@ -28,6 +32,7 @@ map_t* map_init();
 void map_free(map_t *map);
 bool map_add(map_t *map, const char *key, int index);
 int map_get(map_t *map, const char *key);
+bool map_set(map_t *map, const char *key, int new_index);
 void map_remove(map_t *map, const char *key);
 void map_iterate(map_t *map, void (*func)(const char *key, int index));
 

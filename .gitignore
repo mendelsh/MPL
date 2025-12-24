@@ -1,4 +1,3 @@
-main.out
+*.out
 analysis.txt
 flag_test.sh
-test/
