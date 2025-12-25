@@ -34,7 +34,7 @@ typedef struct {
     afd_bucket_t *head;
     afd_bucket_t *curr;
     size_t size;
-    size_t max_ram_bytes;
+    size_t big_alloc_threshold;
 
 #ifndef WIN32
     int backing_fd;
@@ -45,21 +45,32 @@ typedef struct {
 #endif
 } arena_fd_t;
 
+static inline size_t afd_page_align(size_t size) {
+    #ifndef WIN32
+        long page_size = sysconf(_SC_PAGESIZE);
+        if (page_size <= 0) page_size = 4096;
+        return (size + page_size - 1) & ~(page_size - 1);
+    #else
+        return (size + 4095) & ~4095;
+    #endif
+}
+
 static inline byte_t* afd_alloc_bucket_memory(arena_fd_t *arena, size_t size, afd_alloc_type_t *out_type) {
-    if (size > arena->max_ram_bytes) {
+    if (size > arena->big_alloc_threshold) {
         #ifdef WIN32
             // TODO: Windows specific mmap alternative
             return NULL;
         #else
-            size_t offset = arena->backing_offset;
-            size_t new_end = offset + size;
+            size_t offset = afd_page_align(arena->backing_offset);
+            size_t aligned_size = afd_page_align(size);
+            size_t new_end = offset + aligned_size;
 
             if (new_end > arena->backing_size) {
                 if (ftruncate(arena->backing_fd, new_end) != 0) return NULL;
                 arena->backing_size = new_end;
             }
 
-            byte_t *mem = (byte_t*)mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, arena->backing_fd, offset);
+            byte_t *mem = (byte_t*)mmap(NULL, aligned_size, PROT_READ | PROT_WRITE, MAP_SHARED, arena->backing_fd, offset);
             if (mem == MAP_FAILED) return NULL;
             arena->backing_offset = new_end;
             if (out_type) *out_type = AFD_MMAP;
@@ -97,7 +108,10 @@ static inline void afd_free_bucket(afd_bucket_t *bucket) {
     #ifdef WIN32
         // todo: Windows specific munmap alternative
     #else
-        if (bucket->alloc_type == AFD_MMAP && bucket->memory) munmap(bucket->memory, bucket->capacity);
+        if (bucket->alloc_type == AFD_MMAP && bucket->memory) {
+            size_t aligned_size = afd_page_align(bucket->capacity);
+            munmap(bucket->memory, aligned_size);
+        }
     #endif
     free(bucket);
 }
@@ -110,19 +124,12 @@ static inline void afd_free_bucket(afd_bucket_t *bucket) {
  ////////////////// Public API ////////////////////
 //////////////////////////////////////////////////
 
-static inline arena_fd_t* afd_init(size_t initial_capacity, size_t max_ram_bytes) {
+static inline arena_fd_t* afd_init(size_t initial_capacity, size_t big_alloc_threshold) {
     arena_fd_t *arena = (arena_fd_t*)malloc(sizeof(arena_fd_t));
     if (!arena) return NULL;
 
-    arena->head = afd_create_bucket(arena, initial_capacity, NULL);
-    if (!arena->head) {
-        free(arena);
-        return NULL;
-    }
-
-    arena->curr = arena->head;
+    arena->big_alloc_threshold = big_alloc_threshold;
     arena->size = sizeof(arena_fd_t) + sizeof(afd_bucket_t) + initial_capacity;
-    arena->max_ram_bytes = max_ram_bytes;
 
     #ifndef WIN32
         arena->backing_fd = open("arena.tmp", O_RDWR | O_CREAT | O_TRUNC, 0600);
@@ -138,6 +145,13 @@ static inline arena_fd_t* afd_init(size_t initial_capacity, size_t max_ram_bytes
     #else
         // TODO: Windows specific mmap alternative
     #endif
+
+    arena->head = afd_create_bucket(arena, initial_capacity, NULL);
+    if (!arena->head) {
+        free(arena);
+        return NULL;
+    }
+    arena->curr = arena->head;
 
     return arena;
 }
