@@ -16,6 +16,124 @@
 
 #endif
 
+
+
+/*
+      /////////////////////////////////////////////////////////////////////////////
+     ///////////////////  Arena FD - Fast Linear Memory Arena  ///////////////////
+    /////////////////////////////////////////////////////////////////////////////
+
+
+    Overview
+    --------
+    Arena FD is a fast, linear memory arena designed for workloads that perform
+    many allocations and then release them all at once.
+
+    Instead of allocating and freeing memory repeatedly, the arena grows as
+    needed and hands out memory sequentially. This makes allocations extremely
+    fast and predictable.
+
+
+    Core Behavior
+    -------------
+    - Memory is allocated sequentially from the arena
+    - Individual allocations cannot be freed
+    - All memory is released at once when the arena is destroyed
+    - The arena can be reset and reused without releasing memory
+
+
+    Large Allocation Handling
+    -------------------------
+    Allocations larger than `big_alloc_threshold` are handled specially:
+
+    - Memory for large allocations is backed by a temporary file on disk.
+    - This allows allocations larger than available RAM without crashing
+    or overcommitting physical memory.
+    - Small allocations (below the threshold) are allocated normally in RAM.
+
+    This behavior is automatic and requires no special handling by the user.
+
+
+    Allocation Guarantees
+    ---------------------
+    - Returned memory is aligned to `max_align_t`
+    - Allocation is O(1) in the common case
+    - Memory is not zero-initialized
+    - Returned pointers remain valid until `afd_clear()` or `afd_destroy()`
+
+
+    Reset vs Destroy
+    ----------------
+    - afd_clear(arena)
+    Resets the arena so it can be reused. Previously returned pointers become
+    invalid, but memory is kept for future allocations.
+
+    - afd_destroy(arena)
+    Releases all memory and associated resources, including any temporary
+    file used for large allocations. The arena must not be used after this call.
+
+
+    Thread Safety
+    -------------
+    This allocator is NOT thread-safe.
+    If used across multiple threads, external synchronization is required.
+
+
+    Platform Support
+    ----------------
+    - POSIX systems:
+    Fully supported, including large allocation support via disk-backed storage.
+
+    - Windows:
+    Large-allocation support is not yet implemented.
+
+
+    Usage Example
+    -------------
+        arena_fd_t *arena = afd_init(1024 * 1024, 1 << 24); // 1MB initial, 16MB threshold
+
+        int *values = (int*)afd_get_memory(arena, 100 * sizeof(int));
+
+        afd_clear(arena);   // reuse arena memory
+        afd_destroy(arena); // release all resources, including disk-backed memory
+
+
+    Public API
+    ----------
+        arena_fd_t* afd_init(size_t initial_capacity, size_t big_alloc_threshold);
+
+        void* afd_get_memory(arena_fd_t *arena, size_t size);
+
+        void afd_clear(arena_fd_t *arena);
+
+        void afd_destroy(arena_fd_t *arena);
+
+
+    Configuration
+    -------------
+    - initial_capacity
+    Initial amount of memory reserved by the arena.
+
+    - big_alloc_threshold
+    Allocation size above which memory is backed by disk instead of RAM.
+
+
+    Limitations
+    -----------
+    - No individual deallocation
+    - No reallocation
+    - Not thread-safe
+    - Memory contents are undefined on allocation
+    - On Windows, disk-backed large allocations are not yet supported
+
+    ===============================================================================
+*/
+
+
+
+
+
+
 typedef enum { AFD_MALLOC, AFD_MMAP } afd_alloc_type_t;
 
 
